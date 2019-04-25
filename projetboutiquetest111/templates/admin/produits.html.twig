@@ -1,0 +1,76 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}liste {% endblock %}
+
+{% block body %}
+
+     <div class="container">
+         <div class="contenue">
+
+             <div class="row" id="main" >
+                 <div class="col-sm-12 col-md-12 well" id="content">
+                     <h1>liste des produits</h1>
+                 </div>
+             </div>
+
+
+
+
+
+        <div><a href="{{ path("produit.add") }}" class="btn btn-success">ajouter un produit</a></div>
+
+         <br>
+    <div class="example raper">
+
+
+
+
+
+
+
+        <table class="table table-striped">
+
+                <tr>
+                    <th>id</th>
+                    <th>image</th>
+                    <th>libelle</th>
+                    <th>prix</th>
+                    <th>action</th>
+                    <th>action</th>
+                </tr>
+
+
+                {%  for produit in produits %}
+                    <tr>
+                        <td>{{ produit.id }}</td>
+
+                        <td><img src="{{ produit.image }}" height="50" width="50"></td>
+
+
+                        <td>{{ produit.libelle }}</td>
+
+                        <td>{{ produit.prix }}</td>
+
+
+
+                        <td>
+                            <a href="{{path("produit.update",{'id':produit.id})}}" ><button class="btn btn-primary" >metre a jour</button></a>
+                        </td>
+
+                        <td> <a href="{{path("admin.produit.delete",{'id':produit.id})}}" ><button class="btn btn-danger" type="submit">suprimer</button></a></td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+
+
+
+</div>
+
+    </div>
+</div>
+
+{% endblock %}
