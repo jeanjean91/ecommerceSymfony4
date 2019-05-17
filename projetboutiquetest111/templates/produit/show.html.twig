@@ -29,12 +29,12 @@
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-                <div class="banner"><a href="#"><img src="" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="http://static1.squarespace.com/static/5b543a532487fdb5868d96ff/5b54457b562fa73754ee408d/5c2b868e03ce64cdbb481c88/1546356369759/SALE.gif" alt="Banner"></a></div>
             </div>
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-                <div class="banner"><a href="#"><img src="" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="http://static1.squarespace.com/static/5b543a532487fdb5868d96ff/5b54457b562fa73754ee408d/5c2b868e03ce64cdbb481c88/1546356369759/SALE.gif" alt="Banner"></a></div>
             </div>
 
         </div>
@@ -110,7 +110,7 @@
                                 <p>{{ produit.description }} </p>
                             </div>
 
-                            <span class="availability">Availability: <span>{ produit.qstock }}</span></span>
+                            <span class="availability">Availability: <span>{{ produit.qstock }} items in stock</span></span>
 
                             <div class="quantity-colors">
 
@@ -132,7 +132,7 @@
                             </div>
 
                             <div class="actions">
-                                <a href="{{ path("panier.affiche",{'id': produit.id }) }}" class="add-to-cart"><i class="ti-shopping-cart" a href="{{ path("panier.affiche",{'id': produit.id }) }}"></i><span>ADD TO CART</span></a>
+                             {#   <a href="{{ path("panier.index",{'id': produit.id }) }}" class="add-to-cart"><i class="ti-shopping-cart" a href="{{ path("panier.index",{'id': produit.id }) }}"></i><span>ADD TO CART</span></a>#}
 
                                 <a href="{{ path("panier.affiche",{'id': produit.id }) }}" class="btn-success">ajouter au panier </a>
                                 <div class="wishlist-compare">

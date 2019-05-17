@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ProduitRepository;
-use App\Controller\CategorieRepository;
+
 use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,9 +12,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\ProuitType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ProduitType;
+use App\Controller\CategorieRepository;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
+use App\Entity\Categorie;
 use Knp\Component\Pager\PaginatorInterface;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -31,14 +31,35 @@ class ProduitController extends AbstractController
      * @Route("/produits", name="produits")
      */
     public function index(ProduitRepository $repository,
-                          objectManager $manager)
+                          objectManager $manager,Request $request, PaginatorInterface $paginator)
     {
-        $produits = $repository->findAll();
+        $produit = $repository->findOneBy(array('id' => 1) );
+        $allproduits = $repository->findAll();
+        $produits = $paginator->paginate(
+        // Doctrine Query, not results
+            $allproduits,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            9
+        );
 
         return $this->render('produit/Catprod.html.twig', [
             'produits' => $produits
         ]);
     }
+    /*public function menu(\App\Repository\CategorieRepository $repository, ObjectManager $manager): Response
+    {
+        $listCategories = $repository->findCatFirstLevel();
+
+        return $this->render('produit/Catprod.html.twig', [
+            'listCategorie' => $listCategories
+        ]);
+    }*/
+
+
+
+
     /*public function menu(CategorieRepository $repository, ObjectManager $manager): Response
     {
         $listCat = $repository->findCatFirstLevel();
@@ -47,6 +68,14 @@ class ProduitController extends AbstractController
             'listCat' => $listCat
         ]);
     }*/
+    public function menu(\App\Repository\CategorieRepository $repository, ObjectManager $manager): Response
+    {
+        $listCats = $repository->findCatFirstLevel();
+
+        return $this->render('produit/Catprod.html.twig', [
+            'listCat' => $listCats
+        ]);
+    }
 
     /**
      * @Route("/produit/add", name="produit.add")
@@ -106,24 +135,23 @@ class ProduitController extends AbstractController
     /**
      * @Route("/produits-{idCat}", name="produitsParCat")
      */
-   /*public function produits(ProduitRepository $repository, CategorieRepository $categorieRepository, ObjectManager $manager, Request $request, PaginatorInterface $paginator, $idCat)
-{
-    $query = $manager->createQuery(  "SELECT DISTINCT p FROM App\Entity\Produit p
+    public function produits(ProduitRepository $repository, \App\Repository\CategorieRepository $categorieRepository, ObjectManager $manager, Request $request, PaginatorInterface $paginator, $idCat)
+    {
+        $query = $manager->createQuery(  "SELECT DISTINCT p FROM App\Entity\Produit p
                                         JOIN p.categorie cn3 JOIN cn3.categorie cn2 JOIN cn2.categorie cn1
                                         WHERE cn3.id= :id3 OR  cn2.id= :id2 OR  cn1.id= :id1 ORDER BY p.libelle ASC");
-    $query->setParameters(array('id1' => $idCat, 'id2' => $idCat, 'id3' => $idCat));
+        $query->setParameters(array('id1' => $idCat, 'id2' => $idCat, 'id3' => $idCat));
 
-    //$paginator = $this->get('knp_paginator');
-    $listProd = $paginator->paginate(
-        $query,
-        $request->query->get('page', 1)
-    //le numéro de la page à afficher,
-        //20nbre d'éléments par page
-    );
+        //$paginator = $this->get('knp_paginator');
+        $produits = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            12/*nbre d'éléments par page*/
+        );
 
-    return $this->render('produit/affiche.html.twig', [
-        'listProd' => $listProd,
-    ]);
-}*/
+        return $this->render('produit/index.html.twig', [
+            'produit' => $produits,
+        ]);
+    }
 
 }

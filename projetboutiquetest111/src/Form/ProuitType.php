@@ -20,6 +20,9 @@ class ProuitType extends AbstractType
             ->add('dimentions')
             ->add('image')
             ->add('text')
+            ->add('enAvant')
+            ->add('enSolde')
+
         ;
     }
 

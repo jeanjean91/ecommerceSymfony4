@@ -15,10 +15,6 @@
 
 
 
-
-
-            <div><a href="{{ path("produit.add") }}" class="btn btn-success">ajouter un produit</a></div>
-
             <br>
             <div class="example raper">
 
@@ -69,6 +65,16 @@
 
                 </table>
 
+                <div  style="margin-left: 350px;margin-top: 70px;">
+                    <div class="row mt-30">
+                        <div class="col">
+
+                            {{ knp_pagination_render( commandes) }}
+
+
+                        </div>
+                    </div>
+                </div>
 
 
 

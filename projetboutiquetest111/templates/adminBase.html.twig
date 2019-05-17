@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         h1{
-            margin-top: 50px;
+            margin-top: 20px;
             margin-bottom: 50px;
         }
         .navigation{
@@ -527,8 +527,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-            <img src="http://placehold.it/200x50&text=LOGO" alt="LOGO">
+        <a class="navbar-brand" href="">
+            <img src="" alt="">
         </a>
     </div>
     <!-- Top Menu Items -->
@@ -540,7 +540,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% if app.user %} Bonjour : {{ app.user.user }}
                 {% else %}
                     USER NAME
-                {% endif %} <b class="fa fa-angle-down"></b></a>
+                {% endif %} </a>
             <ul class="dropdown-menu" style="background-color: #222;height: 120px;width: 100px" >
                 <li style="margin-bottom: 10px"><a href=""><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                 <li style="margin-bottom: 10px"><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -580,6 +580,7 @@
                 <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>Categorie <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                 <ul id="submenu-2" class="collapse">
                     <li><a href=""><i class="fa fa-angle-double-right"></i> Liste des categories</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i> Liste des souscategories</a></li>
                     <li><a href=""><i class="fa fa-angle-double-right"></i> ajouter une categorie</a></li>
 
                 </ul>
@@ -651,18 +652,18 @@
                     <li class="sidebar-dropdown">
                         <a href="#">
                             <i class="far fa-user"></i>
-                            <span>utilisateurs</span>
+                            <span>Utilisateurs</span>
                             {#<span class="badge badge-pill badge-warning">New</span>#}
                         </a>
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{ path("admin.user") }}">Liste des utilisateurs
+                                    <a href="{{ path("admin.user") }}"><i class="fa fa-angle-double-right"></i>Tout les utilisateurs
                                         {#<span class="badge badge-pill badge-success">Pro</span>#}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path("admin.userAdd") }}">Ajouter un utiliateur</a>
+                                    <a href="{{ path("admin.userAdd") }}"><i class="fa fa-angle-double-right"></i>Ajouter un utiliateur</a>
                                 </li>
                                 {#<li>
                                     <a href="#">Dashboard 3</a>
@@ -678,20 +679,22 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{#{{ path("admin") }}#}">Liste des categories</a>
+                                    <a href="{#{{ path("admin") }}#}"><i class="fa fa-angle-double-right"></i>Les categories</a>
                                 </li>
                                 <li>
-                                    <a href="{#{{ path("produit.add") }}#}">Ajouter une categories</a>
+
+                                    <a href=""><i class="fa fa-angle-double-right"></i> les souscategories</a></li>
                                 </li>
                                 <li>
-                                    {#    <a href="#">Tables</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Forms</a>
-                                    </li>#}
+                                    <a href="{#{{ path("produit.add") }}#}"><i class="fa fa-angle-double-right"></i>New categories</a>
+
+
+                                </li>
+                                <li>
+                                    <a href="{#{{ path("produit.add") }}#}"><i class="fa fa-angle-double-right"></i>New souscat</a>
+
+
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -704,18 +707,18 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{ path("admin.commandes") }}">Afficher les commandes
+                                    <a href="{{ path("admin.commandes") }}"><i class="fa fa-angle-double-right"></i> Les commandes
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path("admin.detail") }}">Afficher le detail</a>
+                                    <a href="{{ path("admin.detail") }}"><i class="fa fa-angle-double-right"></i>Tout les details</a>
                                 </li>
                                 <li>
-                                    <a href="">Gére la commande</a>
+                                    <a href=""><i class="fa fa-angle-double-right"></i>Gére la commande</a>
                                 </li>
                                 <li>
-                                    <a href="#">Credit cart</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Credit cart</a>
                                 </li>
                             </ul>
                         </div>
@@ -728,10 +731,10 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{ path("admin") }}">Liste des produits</a>
+                                    <a href="{{ path("admin") }}"><i class="fa fa-angle-double-right"></i>Tout les produits</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path("produit.add") }}">Ajouter un produits</a>
+                                    <a href="{{ path("produit.add") }}"><i class="fa fa-angle-double-right"></i>Ajouter un produits</a>
                                 </li>
                                 <li>
                                 {#    <a href="#">Tables</a>
@@ -754,12 +757,12 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">afficher les Fournisseurs
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>les Fournisseurs
 
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Ajouter un fournisseur</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>ajout fournisseur</a>
                                 </li>
                                {# <li>
                                     <a href="#">Credit cart</a>
@@ -776,16 +779,16 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">Pie chart</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Pie chart</a>
                                 </li>
                                 <li>
-                                    <a href="#">Line chart</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Line chart</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bar chart</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Bar chart</a>
                                 </li>
                                 <li>
-                                    <a href="#">Histogram</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Histogram</a>
                                 </li>
                             </ul>
                         </div>
@@ -798,10 +801,10 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">Google maps</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Google maps</a>
                                 </li>
                                 <li>
-                                    <a href="#">Open street map</a>
+                                    <a href="#"><i class="fa fa-angle-double-right"></i>Open street map</a>
                                 </li>
                             </ul>
                         </div>

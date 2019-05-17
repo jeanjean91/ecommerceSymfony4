@@ -5,6 +5,8 @@ namespace App\Controller;
 use phpDocumentor\Reflection\Types\This;
 use App\Entity\Commande;
 use App\Entity\Detail;
+use App\Repository\CommandeRepository;
+use App\Repository\DetailRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,13 +48,14 @@ class CommandeController extends AbstractController
             return $this->render('commande/validation.html.twig')
 
            ;}
+        return $this->render('panier/affiche.html.twig', [
+            'controler_name'=>'commandeController',
+
+        ]);
+
     }
 
 
-       /* return $this->render('commande/affiche.html.twig', [
-            'controler_name'=>'commandeController',
-
-        ]);*/
 
     /**
      * @Route("/email", name="admin.email")

@@ -35,6 +35,10 @@
                     <th>image</th>
                     <th>libelle</th>
                     <th>prix</th>
+                    <th>Qtt en stocke</th>
+                   {# <th>dimention</th>#}
+                    <th>En_avant</th>
+                    <th>En_solde</th>
                     <th>action</th>
                     <th>action</th>
                 </tr>
@@ -51,6 +55,10 @@
 
                         <td>{{ produit.prix }}</td>
 
+                        {#<td>{{ produit.dimentions }}</td>#}
+                        <td>{{ produit.qstock }}</td>
+                       <td>{{ produit.enAvant}}</td>
+                        <td>{{ produit.enSolde}}</td>
 
 
                         <td>
@@ -64,6 +72,17 @@
                 {% endfor %}
 
             </table>
+
+        <div  style="margin-left: 350px;margin-top: 70px;">
+            <div class="row mt-30">
+                <div class="col">
+
+                    {{ knp_pagination_render( produits) }}
+
+
+                </div>
+            </div>
+        </div>
 
 
 

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,22 +20,50 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
-    // /**
-    //  * @return Produit[] Returns an array of Produit objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+     * @return Produit[] Returns an array of Produit objects
+     */
+
+    public function findByExampleField($avent):array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
+       $connect =$this->createQueryBuilder('p')
+            ->andWhere('p.enAvant = :enAvant')
+            ->setParameter('enAvant', $avent)
+           /* ->orderBy('p.id', 'ASC')*/
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+          /* ->getResult()*/
         ;
+            return $connect ->execute();
     }
-    */
+    public function findByenSOLDE($solde):array
+    {
+        $connect =$this->createQueryBuilder('p')
+            ->andWhere('p.enSolde = :enSolde')
+            ->setParameter('enSolde', $solde)
+            /* ->orderBy('p.id', 'ASC')*/
+            ->setMaxResults(7)
+            ->getQuery()
+            /* ->getResult()*/
+        ;
+        return $connect ->execute();
+    }
+   /* public function findAllGreaterThanPrice(ProduitRepository $repository,
+                                            objectManager $manager): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM produit
+        WHERE en_solde = 1
+
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['price' => $repository]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }*/
 
     /*
     public function findOneBySomeField($value): ?Produit

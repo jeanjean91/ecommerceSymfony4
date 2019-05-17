@@ -27,18 +27,24 @@
 
 {% block body %}
 
-<hr>
+
 <div class="container bootstrap snippet">
     <div class="row">
+
+        <div class="col-sm-2" style="margin-left: 50px;">
+            <a href="/users" class="pull-right">
+                <img title="profile image" class="imageprofile" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+        </div>
         <div class="col-sm-10">
             <h1> {% if app.user %} Bienvenue {{ app.user.user }}
-            {% else %}
+                {% else %}
                     USER NAME
-                    {% endif %} </h1></div>
-        <div class="col-sm-2">
-            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                {% endif %} </h1>
         </div>
+
     </div>
+
+
     <div class="row">
         <div class="col-sm-3">
             <!--left col-->
@@ -47,7 +53,10 @@
                 <li class="list-group-item text-muted">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> 2.13.2014</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> Yesterday</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span> Joseph Doe</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Real name</strong></span>  {% if app.user %} {{ app.user.user }}
+                    {% else %}
+                        USER NAME
+                    {% endif %} </li>
 
             </ul>
 
@@ -89,10 +98,14 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
+                                <th>client_id</th>
                                 <th>num commandes</th>
-                                <th>image</th>
-                                <th>libele </th>
                                 <th>date </th>
+                                <th>libele </th>
+
+
+                                <th>Qtte</th>
+
                                 <th>prix ht </th>
                                 <th>tva  </th>
                                 <th>prix ttc </th>
@@ -100,13 +113,42 @@
                             </thead>
                             <tbody id="items">
                             <tr>
+
+                              {#  {{ dump(detail) }}#}
+
+
+
+
+
+
+
+
+                            {%  for detail in detail %}
+                                {% if app.user.user  is  same as (app.user.user) %}
+
+                            <tr>
+                               <td>{#{{ detail.commande.client}}#}{% for detail in detail.commande.client%}
+                                       {{ detail.commande.client }} <br>
+                                   {% endfor %}</td>
+                                <td>{{ detail.commande.id }}</td>
+                                <td>{{ detail.commande.date|date('d/m/Y')}}</td>
+                                <td>{{ detail.produit.libelle }}</td>
+
+
+                                <td>{{ detail.qte}}</td>
+
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+
+                                <td>{{  detail.produit.prix }}</td>
+
+
+                                {% else %}
+                                    connectez vous pour voir le listing des commandes
+
+                                {% endif %}
+                                {% endfor %}
+
                             </tr>
 
                             </tbody>
@@ -228,6 +270,7 @@
         <!--/tab-content-->
 
     </div>
+</div>
     <!--/col-9-->
 </div>
     <br/>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\UserType;
 use App\Repository\CommandesRepository;
 use App\Repository\DetailRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository;
@@ -28,29 +29,50 @@ class AdminController extends AbstractController
      * @Route("/admin", name="admin")
      */
     public function index( ProduitRepository $repository,
-                           objectManager $manager)
+                           objectManager $manager,Request $request, PaginatorInterface $paginator)
     {
 
 
 
-        $produits = $repository->findAll();
-
+        $allproduits = $repository->findAll();
+        $produits = $paginator->paginate(
+        // Doctrine Query, not results
+            $allproduits,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            7
+        );
 
 
         return $this->render('admin/produits.html.twig', [
             'produits' => $produits
         ]);
     }
+
+
+
+
     /**
  * @Route("/admin/commandes", name="admin.commandes")
  */
     public function commandes( CommandeRepository $repository,
-                           objectManager $manager)
+                           objectManager $manager,Request $request, PaginatorInterface $paginator)
     {
 
 
 
-        $commandes = $repository->findAll();
+        $allcommandes = $repository->findAll();
+
+        $commandes = $paginator->paginate(
+        // Doctrine Query, not results
+            $allcommandes,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            10
+        );
+
 
 
 
@@ -62,14 +84,21 @@ class AdminController extends AbstractController
      * @Route("/admin/detail", name="admin.detail")
      */
     public function detail( DetailRepository $repository,
-                               objectManager $manager)
+                               objectManager $manager,Request $request, PaginatorInterface $paginator)
     {
 
 
 
-        $details = $repository->findAll();
+        $alldetails = $repository->findAll();
 
-
+        $details = $paginator->paginate(
+        // Doctrine Query, not results
+            $alldetails,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            4
+        );
 
         return $this->render('admin/detail.html.twig', [
             'detail' => $details
@@ -79,12 +108,21 @@ class AdminController extends AbstractController
      * @Route("/admin/user", name="admin.user")
      */
     public function user( UserRepository $repository,
-                          objectManager $manager)
+                          objectManager $manager,Request $request, PaginatorInterface $paginator)
     {
 
 
 
-        $users = $repository->findAll();
+
+        $allusers = $repository->findAll();
+        $users = $paginator->paginate(
+        // Doctrine Query, not results
+            $allusers,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            7
+        );
 
 
 
@@ -112,7 +150,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/userAdd", name="admin.userAdd")
+     * @Route("/admin-userAdd", name="admin.userAdd")
      */
     public function add(Request $request, ObjectManager $manager)
     {

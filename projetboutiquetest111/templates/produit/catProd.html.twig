@@ -32,12 +32,12 @@
 
         <!-- Banner -->
         <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-            <div class="banner"><a href="#"><img src="assets/images/banner/banner-15.jpg" alt="Banner"></a></div>
+            <div class="banner"><a href="#"><img src="https://static1.squarespace.com/static/5a0bbbe62aeba5975d4e2469/5a0bc31cc83025fe16bf978b/5a0bc52bec212dec2b300380/1510720811450/yellow-tag-mon-1.jpg?format=2500w" alt="Banner"></a></div>
         </div>
 
         <!-- Banner -->
         <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-            <div class="banner"><a href="#"><img src="assets/images/banner/banner-14.jpg" alt="Banner"></a></div>
+            <div class="banner"><a href="#"><img src="https://static1.squarespace.com/static/5a0bbbe62aeba5975d4e2469/5a0bc31cc83025fe16bf978b/5a0bc52bec212dec2b300380/1510720811450/yellow-tag-mon-1.jpg?format=2500w" alt="Banner"></a></div>
         </div>
 
     </div>
@@ -172,7 +172,7 @@
                                         <h5 class="title"><a href="{{ path("produit",{'id':produit.id}) }}">{{ produit.libelle }}</a></h5>
                                     </div>
 
-                                    <h5 class="price">{{ produit.prix }}</h5>
+                                    <h5 class="price">${{ produit.prix }}</h5>
 
                                 </div>
 
@@ -221,25 +221,16 @@
                     </div>
                 {% endfor %}
                 </div><!-- Shop Product Wrap End -->
-
+                 <div class="navigation">
                 <div class="row mt-30">
                     <div class="col">
 
-                        <ul class="pagination">
-                            <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li> - - - - - </li>
-                            <li><a href="#">18</a></li>
-                            <li><a href="#">18</a></li>
-                            <li><a href="#">20</a></li>
-                            <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
-                        </ul>
+                        {{ knp_pagination_render( produits) }}
+
 
                     </div>
                 </div>
-
+                </div>
             </div>
 
             <div class="shop-sidebar-wrap col-xl-3 col-lg-4 col-12 mb-15">
@@ -250,20 +241,21 @@
 
 
                     <ul class="sidebar-category">
-                       {# {% for cat in listCat %}#}
+                        {{ dump() }}
+                        {#{% for listCat in listCats %}
 
-                        <li><a href="{#{{ path('produitsParCat', { 'idCat' : cat.id}) }}#}">{#{{ cat.nom }}#}</a></li>
-                        {#{% for scat in cat.sousCategories %}#}
-                        <li><a href="{#{{ path('produitsParCat', { 'idCat' : scat.id}) }}#}">{#{{ scat.nom }}#}</a>
-                        {#{% endfor %}#}
+                        <li><a href="{{ path('produitsParCat', { 'idCat' : cat.id}) }}"></a>{{ cat.nom }}</li>
+                        {% for scat in cat.sousCategories %}
+                        <li><a href="{{ path('produitsParCat', { 'idCat' : scat.id}) }}">{{ scat.nom }}</a>
+                        {% endfor %}
                             <ul class="children">
-                                {#{% for sscat in scat.sousCategories %}#}
-                                <li><a href="{#{{ path('produitsParCat', { 'idCat' : sscat.id}) }}#}">{#{{ sscat.nom }}#}</a></li>
-                                {#{% endfor %}#}
+                                {% for sscat in scat.sousCategories %}
+                                <li><a href="{{ path('produitsParCat', { 'idCat' : sscat.id}) }}">{{ sscat.nom }}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
-                        {#{% endfor %}#}
-                       {# <li><a href="#">Phones & Tablets</a>
+                        {% endfor %}#}
+                       {#<li><a href="#">Phones & Tablets</a>
                             <ul class="children">
                                 <li><a href="#">Samsome</a></li>
                                 <li><a href="#">GL Stylus</a></li>
@@ -323,7 +315,7 @@
 
                 <div class="shop-sidebar mb-35">
 
-                    <div class="banner"><a href="#"><img src="assets/images/banner/banner-41.jpg" alt="Banner"></a></div>
+                    <div class="banner"><a href="#"><img src="https://www.apstherapy.nl/wp-content/uploads/2013/03/aps-therapy-aanbieding.jpg" alt="Banner"></a></div>
 
                 </div>
 

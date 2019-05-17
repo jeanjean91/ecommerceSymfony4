@@ -105,10 +105,10 @@ private $passwordEncoder;
             $j++;
         }
 
-        $N=random_int(1,35);
+        $N=random_int(1,100);
         for($i=0;$i<$N;$i++){
             /*'<p>'.joint($faker->)*/
-        $x=random_int(1,5);
+        /*$x=random_int(1,5);*/
             $x=random_int(1,5);
             $y=random_int(5,10);
             $z=random_int(10,15);

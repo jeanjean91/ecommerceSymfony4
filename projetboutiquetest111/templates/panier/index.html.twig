@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Panier!{% endblock %}
@@ -28,12 +29,12 @@
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-                <div class="banner"><a href="#"><img src="assets/images/banner/banner-15.jpg" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="https://www.prohomecare.eu/assets/images/1555606177sale.jpg" alt="Banner"></a></div>
             </div>
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-                <div class="banner"><a href="#"><img src="assets/images/banner/banner-14.jpg" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="https://www.prohomecare.eu/assets/images/1555606177sale.jpg" alt="Banner"></a></div>
             </div>
 
         </div>
@@ -58,15 +59,25 @@
                                     <th class="pro-remove">Remove</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                               <tbody>
                                 {% set i = 0 %}
                                 {% set s = 0%}
-                                {% for detail in details %}
-                                    {% set i = i + 1 %}
+                               {% for detail in details %}
+                                   {% set i = i + 1 %}
+                                                        {#{% if details is defined and details is not null %}
+                                                            {% set title = produit.image %}
+                                                        {% else %}
+                                                            {% set title = 'Erreur article non trouver !' %}
+                                                        {% endif %}#}
+
+
+{#{{ dump(details) }}#}
+
+
 
                                     <tr>
-                                        <th>
-                                            {{ i }}</th>
+                                       <th>
+                                         {{ i }}</th>
                                     <td class="pro-thumbnail"><a href="#"><img src="{{ detail.produit.image }}" alt="Product"></a></td>
                                         <td class="pro-title"><a href="#">{{ detail.produit.libelle }}</a></td>
                                         <td class="pro-price"><span>{{ detail.produit.prix }}</span></td>
@@ -74,7 +85,7 @@
                                         <td class="pro-subtotal"><span>{{ detail.qte * detail.produit.prix }} €</span></td>
                                         <td class="pro-remove"><a href="{{path("panier.produit.delete",{'id':detail.produit.id})}}"><i class="fa fa-trash-o"></i></a></td>
                                     </tr>
-                                    {%  set sp =  detail.qte * detail.produit.prix %}
+                                   {%  set sp =  detail.qte * detail.produit.prix %}
                                     {% set s= s + sp %}
                                 {% endfor %}
 
@@ -140,9 +151,9 @@
                             <div class="cart-summary">
                                 <div class="cart-summary-wrap">
                                     <h4>Cart Summary</h4>
-                                    <p>Sub Total <span>$1250.00</span></p>
+                                    <p>Sub Total <span>{{ s }} € </span></p>
                                     <p>Shipping Cost <span>$00.00</span></p>
-                                    <h2>Grand Total <span> {{ s }}</span></h2>
+                                    <h2>Grand Total <span> {{ s }} € </span></h2>
                                 </div>
                                 <div class="cart-summary-button">
                                     <button class="checkout-btn"><a href="{{ path('commande.validation') }}" >Checkout</a></button>
@@ -193,6 +204,7 @@
     </div>
 
 {% endblock %}
+
 
 
 

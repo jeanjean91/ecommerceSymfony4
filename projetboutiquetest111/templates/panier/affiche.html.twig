@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Panier!{% endblock %}
@@ -28,12 +29,12 @@
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-                <div class="banner"><a href="#"><img src="assets/images/banner/banner-15.jpg" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="https://www.idf-dutyfree.com/wp-content/uploads/2018/01/Big-Sale-NEWS-1-1100x485.jpg" alt="Banner"></a></div>
             </div>
 
             <!-- Banner -->
             <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-                <div class="banner"><a href="#"><img src="assets/images/banner/banner-14.jpg" alt="Banner"></a></div>
+                <div class="banner"><a href="#"><img src="https://www.idf-dutyfree.com/wp-content/uploads/2018/01/Big-Sale-NEWS-1-1100x485.jpg" alt="Banner"></a></div>
             </div>
 
         </div>
@@ -59,16 +60,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                               {% set i = 0 %}
+                                {% set s = 0%}
                                 {% for detail in details %}
+                                    {% set i = i + 1 %}
+
+
+  {#{{ dump(details) }}#}
+
                                     <tr>
+                                        <th>
+                                          {{ i }}</th>
                                         <td class="pro-thumbnail"><a href="#"><img src="{{ detail.produit.image }}" alt="Product"></a></td>
                                         <td class="pro-title"><a href="#">{{ detail.produit.libelle }}</a></td>
                                         <td class="pro-price"><span>{{ detail.produit.prix }}</span></td>
                                         <td class="pro-quantity"><div class="pro-qty"><input type="text" value="{{ detail.qte }}"></div></td>
                                         <td class="pro-subtotal"><span>{{ detail.qte * detail.produit.prix }} €</span></td>
-                                        <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="pro-remove"><a href="{{path("panier.produit.delete",{'id':detail.produit.id})}}"><i class="fa fa-trash-o"></i></a></td>
                                     </tr>
+                                    {%  set sp =  detail.qte * detail.produit.prix %}
+                                    {% set s= s + sp %}
                                 {% endfor %}
+
+                                </tbody>
 
                                 </tbody>
                             </table>
@@ -134,7 +149,7 @@
                                     <h4>Cart Summary</h4>
                                     <p>Sub Total <span>$1250.00</span></p>
                                     <p>Shipping Cost <span>$00.00</span></p>
-                                    <h2>Grand Total <span>{{ detail.qte * detail.produit.prix  }}</span></h2>
+                                    <h2>Grand Total <span> {{ s }}</span></h2>
                                 </div>
                                 <div class="cart-summary-button">
                                     <button class="checkout-btn"><a href="{{ path('commande.validation') }}"></a> Checkout</button>
@@ -184,6 +199,7 @@
     </div>
 
 {% endblock %}
+
 
 
 

@@ -1,0 +1,46 @@
+
+
+
+
+<button class="close-cart">Close Cart<i class="icofont icofont-close"></i></button>
+
+</div>
+<div class="container">
+
+<!-- Mini Cart Products -->
+<ul class="mini-cart-products">
+  {# {{ dump(details) }}#}
+
+    {% for detail in details %}
+    <li>
+        <a class="image"><img src="{{detail.produit.image}}" alt="Product"></a>
+        <div class="content">
+            <a href="single-product.html" class="title">{{detail.produit.libelle}}</a>
+            <span class="price">Price:{{detail.produit.prix}}</span>
+            <span class="qty"><select name="" id="" onchange = "modifQuantite("{{ detail.produit.id }}",this.value)">
+                        {% for i   in 1..20  %}
+                            <option value="{{ i }}"
+                                    {% if detail.Qte == i %}selected {% endif %} >
+                                {{ i }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+            </span>
+        </div>
+        <button class="remove"> <a href="{{ path('panier.produit.delete' , {'id': detail.produit.id}) }}"><i class="fa fa-trash-o"></i></a></button>
+    </li>
+    {% endfor %}
+
+</ul>
+
+<!-- Mini Cart Bottom -->
+<div class="mini-cart-bottom">
+
+   {# <h4 class="sub-total">Total: <span>$1160</span></h4>#}
+
+    <div class="button">
+        <a href="{{ path('panier') }}">CHECK OUT</a>
+    </div>
+</div>
+</div>
