@@ -1,0 +1,35 @@
+{% extends 'adminbase.html.twig' %}
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Edition du user!{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+    <div class="contenue">
+        <div class="row"  >
+            <div class="col-sm-12 col-md-12 well" id="content">
+                <h1>modifier les iformations de l'utilisateurs</h1>
+            </div>
+        </div>
+
+        <div class="mt-4" style="margin-left: 50px;width: 800px;margin-bottom: 50px">
+            {{ form_start(formUser) }}
+            <div class="col-sm-4">{{ form_row(formUser.user,{'atr':{'placeholder':"titre du user"}}) }}</div>
+            <div class="col-sm-8">{{ form_row(formUser.email,{'atr':{'placeholder':"titre du user"}}) }}</div>
+            <div class="col-sm-4">{{ form_row(formUser.password,{'atr':{'placeholder':"titre du user"}}) }}</div>
+            <div class="col-sm-4">{{ form_row(formUser.adress,{'atr':{'placeholder':"titre du user"}}) }}</div>
+            <div class="col-sm-4">{{ form_row(formUser.localite,{'atr':{'placeholder':"titre du user"}}) }}</div>
+
+
+
+            {{ form_widget(formUser) }}
+            <button class="btn btn-success" type="submit">enregistre les modifications</button>
+            {{ form_end(formUser) }}
+
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

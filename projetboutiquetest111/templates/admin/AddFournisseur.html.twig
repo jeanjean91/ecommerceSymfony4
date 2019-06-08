@@ -1,0 +1,37 @@
+{% extends 'adminBase.html.twig' %}
+{% form_theme formFournisseur 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}ajouter une categorie!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="contenue">
+            <div class="row" id="main" >
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    <h1>Ajouter une fournisseur</h1>
+                </div>
+            </div>
+
+
+            <div class="mt-4">
+               {# {{ form_start(formFournisseur) }}
+                <div class="col-sm-4">{{ form_row(formFournisseur.nom,{'atr':{'placeholder':"titre du user"}}) }}</div>#}
+               {# <div class="col-sm-8">{{ form_row(formFournisseur.produits,{'atr':{'placeholder':"titre du user"}}) }}</div>#}
+                {#<div class="col-sm-4">{{ form_row(formFournisseur.adress,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                <div class="col-sm-4">{{ form_row(formFournisseur.tel,{'atr':{'placeholder':"titre du user"}}) }}</div>#}
+                {#<div class="col-sm-4">{{ form_row(formCat.categorie,{'atr':{'placeholder':"titre du user"}}) }}</div>#}
+
+
+                {# <div class="col-sm-4">{{ form_row(RegistrationFormType.adress,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                 <div class="col-sm-4">{{ form_row(fRegistrationFormType.localite,{'atr':{'placeholder':"titre du user"}}) }}</div>
+ #}
+                {{ form_widget(formFournisseur) }}
+                <button class="btn btn-success" type="submit">enregistre les modification</button>
+                {{ form_end(formFournisseur) }}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

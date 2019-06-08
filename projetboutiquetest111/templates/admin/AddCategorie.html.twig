@@ -1,0 +1,36 @@
+{% extends 'adminBase.html.twig' %}
+{% form_theme formCat 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}ajouter une categorie!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="contenue">
+            <div class="row" id="main" >
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    <h1>Ajouter une categorie</h1>
+                </div>
+            </div>
+
+
+            <div class="mt-4">
+                {{ form_start(formCat) }}
+                <div class="col-sm-4">{{ form_row(formCat.nom,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                <div class="col-sm-8">{{ form_row(formCat.niveau,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                <div class="col-sm-4">{{ form_row(formCat.description,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                {#<div class="col-sm-4">{{ form_row(formCat.categorie,{'atr':{'placeholder':"titre du user"}}) }}</div>#}
+
+
+                {# <div class="col-sm-4">{{ form_row(RegistrationFormType.adress,{'atr':{'placeholder':"titre du user"}}) }}</div>
+                 <div class="col-sm-4">{{ form_row(fRegistrationFormType.localite,{'atr':{'placeholder':"titre du user"}}) }}</div>
+ #}
+               {# {{ form_widget(formCat) }}#}
+                <button class="btn btn-success" type="submit">enregistre les modification</button>
+                {{ form_end(formCat) }}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

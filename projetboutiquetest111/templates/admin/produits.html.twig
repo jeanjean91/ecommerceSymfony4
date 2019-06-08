@@ -1,0 +1,95 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}liste {% endblock %}
+
+{% block body %}
+
+     <div class="container">
+         <div class="contenue">
+
+             <div class="row" id="main" >
+                 <div class="col-sm-12 col-md-12 well" id="content">
+                     <h1>liste des produits</h1>
+                 </div>
+             </div>
+
+
+
+
+
+        <div><a href="{{ path("produit.add") }}" class="btn btn-success">ajouter un produit</a></div>
+
+         <br>
+    <div class="example raper">
+
+
+
+
+
+
+
+        <table class="table table-striped">
+
+                <tr>
+                    <th>id</th>
+                    <th>image</th>
+                    <th>libelle</th>
+                    <th>prix</th>
+                    <th>Qtt en stocke</th>
+                  {# <th>Cateygorie</th>#}
+                    <th>En_avant</th>
+                    <th>En_solde</th>
+                    <th>action</th>
+                    <th>action</th>
+                </tr>
+
+
+                {%  for produit in produits %}
+                    <tr>
+                        <td>{{ produit.id }}</td>
+
+                        <td><img src="{{ produit.image }}" height="50" width="50"></td>
+
+
+                        <td>{{ produit.libelle }}</td>
+
+                        <td>{{ produit.prix }}</td>
+
+                      {#  {{ produit.categorie }}</td>#}
+                        <td>{{ produit.qstock }}</td>
+                       <td>{{ produit.enAvant}}</td>
+                        <td>{{ produit.enSolde}}</td>
+
+
+                        <td>
+                            <a href="{{path("produit.update",{'id':produit.id})}}" ><button class="btn btn-primary" >metre a jour</button></a>
+                        </td>
+
+                        <td> <a href="{{path("admin.produit.delete",{'id':produit.id})}}" ><button class="btn btn-danger" type="submit">suprimer</button></a></td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+        <div  style="margin-left: 350px;margin-top: 70px;">
+            <div class="row mt-30">
+                <div class="col">
+
+                    {{ knp_pagination_render( produits) }}
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+</div>
+
+    </div>
+</div>
+
+{% endblock %}

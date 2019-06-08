@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandeController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>commande valider</h1>
+        <div class="col-lg-8">
+
+         {% if app.user %}<h3>{{ app.user.user }},</h3>
+                {% else %}
+                    USER NAME
+                {% endif %}<h3>merci pour votre confiance !</h3> <h5> vous allez recevoir un emial avect le detail de votre commande.</h5> </div>
+    </div>
+
+{% endblock %}
