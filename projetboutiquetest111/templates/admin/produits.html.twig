@@ -35,9 +35,11 @@
                     <th>image</th>
                     <th>libelle</th>
                     <th>prix</th>
+                    <th >categorie</th>
                     <th>Qtt en stocke</th>
                   {# <th>Cateygorie</th>#}
                     <th>En_avant</th>
+                    <
                     <th>En_solde</th>
                     <th>action</th>
                     <th>action</th>
@@ -48,12 +50,13 @@
                     <tr>
                         <td>{{ produit.id }}</td>
 
-                        <td><img src="{{ produit.image }}" height="50" width="50"></td>
+                        <td><img src="{{ asset('image/'~produit.image) }}" height="50" width="50"></td>
 
 
                         <td>{{ produit.libelle }}</td>
 
                         <td>{{ produit.prix }}</td>
+                        <td>{{ produit.categorie }}</td>
 
                       {#  {{ produit.categorie }}</td>#}
                         <td>{{ produit.qstock }}</td>

@@ -51,8 +51,8 @@ class Categorie
     private $produits;
 
     public function __construct() {
-        $this->sousCategories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sousCategories = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int

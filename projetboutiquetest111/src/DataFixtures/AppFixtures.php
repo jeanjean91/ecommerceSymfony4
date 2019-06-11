@@ -90,7 +90,7 @@ private $passwordEncoder;
             $j++;
         }
 
-        $j = 0;
+        /*$j = 0;
         for ($i = 0; $i < 125; $i++)
         {
             if($j == 25){ $j = 0; }
@@ -103,7 +103,7 @@ private $passwordEncoder;
             $manager->persist($cat);
             $catNiv3->add($cat);
             $j++;
-        }
+        }*/
 
         $N=random_int(1,35);
         for($i=0;$i<$N;$i++){

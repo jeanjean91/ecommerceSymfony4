@@ -66,6 +66,17 @@ class ProduitController extends AbstractController
         $form = $this->createForm(ProuitType::class, $produit);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+            /*    $imageName = $image->getImage();*/
+            $imageName = md5(uniqid()).'.'.$image->guessExtension();
+
+            $produit->setImage($imageName);
+
+            $image->move(
+                $this->getParameter('image_directory'), $imageName);
+            $produit->setImage($imageName);
+
+            dump($image);
             $manager->persist($produit);
             $manager->flush();
             return $this->redirectToRoute("admin");
@@ -102,6 +113,17 @@ class ProduitController extends AbstractController
         $form = $this->createForm(ProuitType::class, $produit);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+            /*    $imageName = $image->getImage();*/
+            $imageName = md5(uniqid()).'.'.$image->guessExtension();
+
+            $produit->setImage($imageName);
+
+            $image->move(
+                $this->getParameter('image_directory'), $imageName);
+            $produit->setImage($imageName);
+
+            dump($image);
             $manager->persist($produit);
             $manager->flush();
             return $this->redirectToRoute("admin");

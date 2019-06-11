@@ -13,7 +13,7 @@
 
     {% for detail in details %}
     <li>
-        <a class="image"><img src="{{detail.produit.image}}" alt="Product"></a>
+        <a class="image"><img src="{{ asset('image/'~produit.image) }}" alt="Product"></a>
         <div class="content">
             <a href="single-product.html" class="title">{{detail.produit.libelle}}</a>
             <span class="price">Price:{{detail.produit.prix}}</span>

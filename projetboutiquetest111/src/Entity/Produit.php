@@ -6,8 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @Vich\Uploadable
  */
 class Produit
 {
@@ -27,6 +32,19 @@ class Produit
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     * @var \DateTime|null
+     */
+    private $updated_at;
+    /**
+
+     * @Vich\UploadableField(mapping="evenements", fileNameProperty="filename")
+     *
+     * @var File
+     */
+
+    private $imageFile;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -194,7 +212,7 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): Categorie
+    public function getCategorie()
     {
         return $this->categorie;
     }
@@ -331,9 +349,15 @@ class Produit
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+
+    public function setImage(?string $image): Produit
     {
         $this->image = $image;
+
+
+        if ($this->image instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
 
         return $this;
     }
@@ -417,6 +441,52 @@ class Produit
             $this->yes->removeElement($ye);
             $ye->removeProduit($this);
         }
+
+        return $this;
+    }
+    /**
+     * @return File
+     */
+    public function getImageFile(): File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     * @return Produit
+     */
+    public function setImageFile(File $imageFile): Produit
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getFil()
+    {
+        return $this->fil;
+    }
+
+    /**
+     * @param mixed $filename
+     * @return Produit
+     */
+    public function setFil(UploadedFile $fil)
+    {
+        $this->filename = $fil;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
